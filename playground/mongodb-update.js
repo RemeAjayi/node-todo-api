@@ -42,3 +42,4 @@ returnOriginal: false
 });
 //db.close
 });
+// right click database name in robo 3t to drop it
