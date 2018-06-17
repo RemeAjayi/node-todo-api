@@ -23,9 +23,20 @@ res.status(400).send(e);
 });
 
 }); //end of post call to /todos
+
+app.get('/todos', (req,res) => {
+  Todo.find().then((todos) => {
+    res.send({todos});
+  }, (e) => {
+  res.status(400).send(e);
+  });
+});//end of get call to /todos
+
 app.listen(3000, ()=> {
   console.log("Starting up on port 3000");
 });
+
+module.exports = {app};
 
 //what is a REST API?
 //diff b/w app.post and app.get
