@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>All Todos</title>
+</head>
+<body>
+<h1>{{todos.[0].text}}</h1><small>{{todos.[0].completed}}</small>
+<ul class="list">
+  {{#each todos}}
+    <li>{{this.text}}</li>
+  {{/each}}
+</ul>
+</body>
+</html>

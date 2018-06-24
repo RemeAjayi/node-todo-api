@@ -6,8 +6,11 @@ var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 
+const hbs = require('hbs');
 var app = express();
 
+//sets view
+app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 
 app.post('/todos', (req, res)=> {
@@ -26,7 +29,8 @@ res.status(400).send(e);
 
 app.get('/todos', (req,res) => {
   Todo.find().then((todos) => {
-    res.send({todos});
+   // res.send({todos});
+   res.render('todo.hbs', {todos});
   }, (e) => {
   res.status(400).send(e);
   });
@@ -43,8 +47,8 @@ app.get('/todos/:id', (req, res) => {
     if (!todo) {
       return res.status(404).send();
     }
-
-    res.send({todo});
+     res.send({todo});
+    //res.render('todo/'+id, {todo});
   }).catch((e) => {
     res.status(400).send();
   });
@@ -74,3 +78,4 @@ module.exports = {app};
 //what is a REST API?
 //diff b/w app.post and app.get
 //tested /todos in postman
+
