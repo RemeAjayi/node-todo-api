@@ -14,7 +14,18 @@ var Todo = mongoose.model('Todo', {
     completedAt: {
        type: Number,
        default: null
+    }, 
+    url: {
+      type: String,
+      default: '/todos/' + this._id
     }
 });
+
+// // Virtual for todo's URL
+// Todo
+// .virtual('url')
+// .get(function () {
+//   return '/todos/' + this._id;
+// });
 
 module.exports = {Todo};
