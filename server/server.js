@@ -9,9 +9,15 @@ var {User} = require('./models/user');
 const hbs = require('hbs');
 var app = express();
 
+const port = process.env.PORT || 3000
+
 //sets view
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+/*The urlencoded method within body-parser tells body-parser to extract data from the
+<form> element and add them to the body property in the request object*/
+
 
 app.post('/todos', (req, res)=> {
 //create a new instance of todo
@@ -24,6 +30,8 @@ todo.save().then( (doc)=> {
 }, (e) => {
 res.status(400).send(e);
 });
+
+res.redirect('/todos');
 
 }); //end of post call to /todos
 
@@ -68,8 +76,8 @@ app.post('/users', (req, res)=> {
   
   });
 
-app.listen(3000, ()=> {
-  console.log("Starting up on port 3000");
+app.listen(port, ()=> {
+  console.log(`Starting up on ${port}`);
 });
 
 module.exports = {app};

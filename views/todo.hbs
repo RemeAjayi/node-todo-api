@@ -28,9 +28,13 @@ small {
 </style>
 </head>
 <body>
+<form method="POST" action="/todos">
+<input type="text" class="form-control" name="text" placeholder="Insert new todo">
+<input type="submit" value="done">
+</form>
 <ul class="list mx-auto">
   {{#each todos}}
-    <li class="m-1 p-2"><input class="form-check-input" type="checkbox" value=""><a href="{{this.url}}" class="todo-header">{{this.text}}</a>
+    <li class="m-1 p-2"><input class="form-check-input" type="checkbox" value=""><a href="/todos/{{id}}" class="todo-header">{{this.text}}</a>
     </li>
   {{/each}}
 </ul>
