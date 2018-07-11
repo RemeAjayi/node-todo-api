@@ -1,3 +1,4 @@
+const _ = require('lodash');
 var express = require('express');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
@@ -45,22 +46,104 @@ app.get('/todos', (req,res) => {
 });//end of get call to /todos
 
 app.get('/todos/:id', (req, res) => {
+  
   var id = req.params.id;
-
+ 
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
   }
 
   Todo.findById(id).then((todo) => {
     if (!todo) {
-      return res.status(404).send();
+      return res.status(500).send();
     }
-    res.render('single-todo.hbs', {todo});
+    res.render('view_single_todo.hbs', {todo});
   }).catch((e) => {
     res.status(400).send();
   });
 });
 
+app.post('/delete/todos', (req, res)=> {
+  Todo.remove({}).then((result)=> {
+  });
+  res.redirect('/todos');
+ });
+
+app.get('/delete/todos/:id', (req, res) => {
+  var id = req.params.id;
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+res.render('delete_todo.hbs');
+
+});
+ 
+app.post('/delete/todos/:id', (req, res) => {
+  var id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+  Todo.findByIdAndRemove(id).then((todo) => {
+    if (!todo) {
+      return res.status(404).send();
+    }
+   res.redirect('/todos');
+  }).catch((e) => {
+    res.status(400).send();
+  });
+
+});
+app.get('/update/todos/:id', (req, res) => {
+  var id = req.params.id;
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+  Todo.findById(id).then((todo) => {
+    if (!todo) {
+      return res.status(500).send();
+    }
+    res.render('update_todo.hbs', {todo});
+  }).catch((e) => {
+    res.status(400).send();
+  });
+});
+ 
+app.post('/update/todos/:id', (req, res) => {
+  var id = req.params.id;
+  var body = _.pick(req.body, ['text', 'completed']);
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+
+if(_.isBoolean(body.completed) && body.completed)
+{
+ body.completedAt = new Date().getTime();
+}
+else{
+  body.completed = false;
+  body.completedAt = null;
+}
+
+  Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((todo) => {
+    if (!todo) {
+      return res.status(404).send();
+    }
+   res.render('view_single_todo.hbs',  {todo});
+  }).catch((e) => {
+    res.status(400).send();
+  });
+
+});
+//to access post you need to use a form with action of post
+
+//update route
+//remove checkboxes from main todo page
+//when updated to be complete, each todo should be ticked and have strikethrough
+//all deletion is manual
+//update readme
 
 app.post('/users', (req, res)=> {
   //create a new user
@@ -83,6 +166,5 @@ app.listen(port, ()=> {
 module.exports = {app};
 
 //what is a REST API?
-//diff b/w app.post and app.get
-//tested /todos in postman
+
 
