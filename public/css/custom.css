@@ -1,8 +1,27 @@
 body{
-    background-color:indigo;
+    background-color: #6e3667;
+    font-family: 'Cookie', cursive;
+    color: #1a0315;
     }
+
+a {
+  text-decoration: none !important ;
+  color: #88d317;
+}
+button 
+{
+  background-color: #88d317 !important;
+  color: #1a0315 !important;
+  border: 1px solid #88d317 !important;
+}
+.main
+{
+  max-width: 1000px;
+}
+
+
     ul{
-      width: 50%;
+      width: 100%;
     }
     li{
       list-style-type: none;
@@ -11,25 +30,18 @@ body{
       text-align: center;
       max-width: 500px;
     }
-    .todo-header
-    {
-      color: coral;
-    }
-    small {
-      color:chocolate;
+    li a, .single-todo a{
+      color: #1a0315;
     }
  .single-todo{
           width: 50%;
         }
-        .item{
+  .item{
           list-style-type: none;
           min-height: 50px;
           background-color: white;
           text-align: center;
           max-width: 500px;
         }
-        .todo-header
-        {
-          color: coral;
-        }
+
         

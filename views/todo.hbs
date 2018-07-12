@@ -4,14 +4,21 @@
 <meta charset="utf-8">
 <title>All Todos</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link href="/css/custom.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"> 
 </head>
 <body>
+<div class="main m-3">
+<div class="row mx-auto">
+<div class="col-lg-6">
+<form method="POST" action="/todos" class="form-inline m-1">
+<input type="text" class="form-control w-75" name="text" placeholder="Insert new todo">
+<button class="btn btn-danger" type="submit" value="done">Done</button></form>  
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
- Delete All
+ Delete All <i class="fa fa-trash"></i>
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -34,11 +41,11 @@ Delete All Items ?
 </div>
 </div>
 </div>
-<form method="POST" action="/todos">
-<input type="text" class="form-control" name="text" placeholder="Insert new todo">
-<input type="submit" value="done">
-</form>
-<a href="/delete/todos">Delete All <i class="fa fa-trash"></i></a>
+</div>
+
+<div class="col-lg-6">
+
+
 <ul class="list mx-auto">
 {{#each todos}}
 <li class="m-1 p-2">
@@ -48,6 +55,9 @@ Delete All Items ?
 </li>
 {{/each}}
 </ul>
+</div>
+</div>    
+</div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
