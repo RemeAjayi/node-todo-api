@@ -14,6 +14,7 @@ const port = process.env.PORT || 3000
 
 //sets view
 app.set('view engine', 'hbs');
+app.use(express.static( './public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 /*The urlencoded method within body-parser tells body-parser to extract data from the

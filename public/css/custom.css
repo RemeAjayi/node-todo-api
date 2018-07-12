@@ -1,0 +1,35 @@
+body{
+    background-color:indigo;
+    }
+    ul{
+      width: 50%;
+    }
+    li{
+      list-style-type: none;
+      min-height: 50px;
+      background-color: white;
+      text-align: center;
+      max-width: 500px;
+    }
+    .todo-header
+    {
+      color: coral;
+    }
+    small {
+      color:chocolate;
+    }
+ .single-todo{
+          width: 50%;
+        }
+        .item{
+          list-style-type: none;
+          min-height: 50px;
+          background-color: white;
+          text-align: center;
+          max-width: 500px;
+        }
+        .todo-header
+        {
+          color: coral;
+        }
+        
