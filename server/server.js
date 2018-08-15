@@ -1,3 +1,4 @@
+require('./config/config');
 const _ = require('lodash');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -7,6 +8,7 @@ var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 
+var {authenticate} = require('./middleware/authenticate');
 const hbs = require('hbs');
 var app = express();
 
@@ -19,7 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 /*The urlencoded method within body-parser tells body-parser to extract data from the
 <form> element and add them to the body property in the request object*/
-
+app.get('/', (req, res) =>
+{
+  res.redirect('/todos');
+});
 
 app.post('/todos', (req, res)=> {
 //create a new instance of todo
@@ -146,19 +151,25 @@ else{
 //all deletion is manual
 //update readme
 
-app.post('/users', (req, res)=> {
-  //create a new user
-      var user = new User({
-     email: req.body.emai
-  }); //req.body contains the data that the user sends with the request
-  
-  user.save().then( (doc)=> {
-   res.send(doc);
-  }, (e) => {
-  res.status(400).send(e);
-  });
-  
-  });
+// POST /users
+
+app.post('/users', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+  var user = new User(body);
+
+  user.save().then(() => {
+    return user.generateAuthToken();
+  }).then((token) => {
+    res.header('x-auth', token).send(user);
+  }).catch((e) => {
+    res.status(400).send(e);
+  })
+});
+
+app.get('/users/me', authenticate, (req, res) => {
+  res.send(req.user);
+});
+//instance methods begin with u and model methods with U
 
 app.listen(port, ()=> {
   console.log(`Starting up on ${port}`);
@@ -169,3 +180,5 @@ module.exports = {app};
 //what is a REST API?
 
 
+//note that your content-type header must be set
+//for this project it is application/json
