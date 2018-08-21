@@ -3,6 +3,7 @@ const _ = require('lodash');
 var express = require('express');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
+const bcrypt = require('bcryptjs');
 
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
@@ -170,6 +171,19 @@ app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user);
 });
 //instance methods begin with u and model methods with U
+
+//post /users/login
+app.post('/users/login', (req, res) =>
+{
+  var body = _.pick(req.body, ['email', 'password']);
+  User.findByCredentials(body.email, body.password).then((user)=>{
+    return user.generateAuthToken().then((token) => {
+      res.header('x-auth', token).send(user);
+    });
+  }).catch((e)=> {
+res.status(404).send();
+  });
+});
 
 app.listen(port, ()=> {
   console.log(`Starting up on ${port}`);
