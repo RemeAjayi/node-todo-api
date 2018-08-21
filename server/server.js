@@ -184,8 +184,18 @@ app.post('/users/login', (req, res) =>
 res.status(404).send();
   });
 });
+//logout 
+//supply an x-auth token in the header
+//x-auth should be the only header
+app.delete('/users/me/token', authenticate, (req,res)=> {
+req.user.removeToken(req.token).then(()=> {
+res.status(200).send();
+}, ()=>{
+  res.status(400).send();
+});
+});
 
-app.listen(port, ()=> {
+app.listen(port, ()=> {s
   console.log(`Starting up on ${port}`);
 });
 
