@@ -24,7 +24,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 <form> element and add them to the body property in the request object*/
 app.get('/', (req, res) =>
 {
-  res.redirect('/todos');
+  res.render('login.hbs');
+});
+
+app.get('/register', (req, res) =>
+{
+  res.render('register.hbs');
 });
 
 app.post('/todos', authenticate, (req, res)=> {
@@ -171,7 +176,8 @@ app.post('/users', (req, res) => {
   user.save().then(() => {
     return user.generateAuthToken();
   }).then((token) => {
-    res.header('x-auth', token).send(user);
+   // res.header('x-auth', token).send(user);
+  res.header('x-auth', token).send(user);
   }).catch((e) => {
     res.status(400).send(e);
   })
@@ -179,6 +185,7 @@ app.post('/users', (req, res) => {
 
 app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user);
+
 });
 //instance methods begin with u and model methods with U
 
@@ -188,11 +195,12 @@ app.post('/users/login', (req, res) =>
   var body = _.pick(req.body, ['email', 'password']);
   User.findByCredentials(body.email, body.password).then((user)=>{
     return user.generateAuthToken().then((token) => {
-      res.header('x-auth', token).send(user);
+    res.header('x-auth', token).send(user);
     });
   }).catch((e)=> {
 res.status(404).send();
   });
+res.redirect('/todos');
 });
 //logout 
 //supply an x-auth token in the header
@@ -213,6 +221,6 @@ module.exports = {app};
 
 //what is a REST API?
 
-
+//frontend frameworks will allow you make your app single page
 //note that your content-type header must be set
 //for this project it is application/json
