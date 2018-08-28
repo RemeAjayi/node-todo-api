@@ -11,6 +11,7 @@ var {User} = require('./models/user');
 
 var {authenticate} = require('./middleware/authenticate');
 const hbs = require('hbs');
+var session = require('express-session');
 var app = express();
 
 const port = process.env.PORT || 3000
@@ -22,6 +23,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 /*The urlencoded method within body-parser tells body-parser to extract data from the
 <form> element and add them to the body property in the request object*/
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
+
+
 app.get('/', (req, res) =>
 {
   res.render('login.hbs');
@@ -177,7 +185,9 @@ app.post('/users', (req, res) => {
     return user.generateAuthToken();
   }).then((token) => {
    // res.header('x-auth', token).send(user);
-  res.header('x-auth', token).send(user);
+   req.session.accessToken = token;
+   //console.log(req.session.accessToken);
+   res.redirect('/todos');
   }).catch((e) => {
     res.status(400).send(e);
   })
@@ -195,12 +205,15 @@ app.post('/users/login', (req, res) =>
   var body = _.pick(req.body, ['email', 'password']);
   User.findByCredentials(body.email, body.password).then((user)=>{
     return user.generateAuthToken().then((token) => {
-    res.header('x-auth', token).send(user);
+        //res.header('x-auth', token);
+        req.session.accessToken = token;
+        //console.log(req.session.accessToken);
+        res.redirect('/todos');
     });
   }).catch((e)=> {
-res.status(404).send();
+        res.status(404).send();
   });
-res.redirect('/todos');
+ 
 });
 //logout 
 //supply an x-auth token in the header
