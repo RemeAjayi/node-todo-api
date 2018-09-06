@@ -12,6 +12,7 @@
 <div class="main m-3">
 <div class="row mx-auto">
 <div class="col-lg-6">
+<p class="float-right"><a href="/users/me/token">Logout</a></p>
 <form method="POST" action="/todos" class="form-inline m-1">
 <input type="text" class="form-control w-75" name="text" placeholder="Insert new todo">
 <button class="btn btn-danger" type="submit" value="done">Done</button></form>  
@@ -32,6 +33,7 @@
 <div class="modal-body">
 Delete All Items ?
 </div>
+
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 <form method="post" action="/delete/todos">

@@ -108,7 +108,7 @@ app.post('/delete/todos/:id', authenticate, (req, res) => {
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
   }
-  Todo.findOne({
+  Todo.findOneAndRemove({
     _id:id,
     _creator: req.user._id
   }).then((todo) => {
@@ -218,9 +218,15 @@ app.post('/users/login', (req, res) =>
 //logout 
 //supply an x-auth token in the header
 //x-auth should be the only header
-app.delete('/users/me/token', authenticate, (req,res)=> {
+app.get('/users/me/token', authenticate, (req,res)=> {
+  res.render('logout.hbs');
+  });
+  
+app.post('/users/me/token', authenticate, (req,res)=> {
 req.user.removeToken(req.token).then(()=> {
 res.status(200).send();
+req.session.destroy();
+res.redirect('/');
 }, ()=>{
   res.status(400).send();
 });
