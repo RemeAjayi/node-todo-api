@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 /*The urlencoded method within body-parser tells body-parser to extract data from the
 <form> element and add them to the body property in the request object*/
+hbs.registerPartials('./views/partials')
 app.use(session({
   secret: 'keyboard cat',
   resave: false,

@@ -1,15 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>All Todos</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<link href="/css/custom.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"> 
-</head>
-<body>
-<div class="main m-3">
+{{>header}}
+ <div style="height: 100vh" class="pattern-bg">
+        <div class="flex-center flex-column">
+            <form class="text-center border border-light p-5 form-white-bg" method="post" action="/users">
+
+                <p class="h4 mb-4">Sign Up</p>
+                <!-- Name -->
+                <input name="name" type="name" id="name" class="form-control mb-4" placeholder="Name" >
+
+                <!-- Email -->
+                <input name="email" type="email" id="email" class="form-control mb-4" placeholder="E-mail" >
+            
+                <!-- Password -->
+                <input name="password" type="password" id="password" class="form-control mb-4" placeholder="Password">
+            
+                {{!-- <div class="d-flex justify-content-around">
+                    <div>
+                        <!-- Remember me -->
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- Forgot password -->
+                        <a href="">Forgot password?</a>
+                    </div>
+                </div> --}}
+            
+                <!-- Sign in button -->
+                <button class="btn btn-info btn-block my-4" type="submit">Sign Up</button>
+            
+                <!-- Register -->
+               <p>Already signed up? 
+               <a href="/"> Log in</a> here
+               </p>
+                </a>
+            
+            </form>
+        </div>
+    </div>
+{{!-- <!-- Default form login -->
 <div class="row mx-auto">
 <form method="post" action="/users">
 <input class="form-control" name="email" type="text" placeholder="Enter Email Here">
@@ -18,9 +48,5 @@
 <p>Already signed up? <a href="/"> Log in</a> here</p>
 </form>
 </div>    
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+</div> --}}
+{{>footer}}

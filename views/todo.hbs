@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>All Todos</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<link href="/css/custom.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"> 
-</head>
-<body>
-<div class="main m-3">
-<div class="row mx-auto">
-<div class="col-lg-6">
-<p class="float-right"><a href="/users/me/token">Logout</a></p>
-<form method="POST" action="/todos" class="form-inline m-1">
-<input type="text" class="form-control w-75" name="text" placeholder="Insert new todo">
-<button class="btn btn-danger" type="submit" value="done">Done</button></form>  
+{{>header}}
+<nav class="z-depth-1 p-4 mb-2 mx-0">
+{{!-- add name dynamically --}}
+<h3>Hi Reme</h3>
+<span class="float-right"><a href="/users/me/token">
+<i class="fa fa-sign-out-alt"></i>
+</a></span>
+<span class="float-right">
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
- Delete All <i class="fa fa-trash"></i>
+ <i class="fa fa-trash"></i>
 </button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -43,6 +33,13 @@ Delete All Items ?
 </div>
 </div>
 </div>
+</span>
+</nav>
+
+<form method="POST" action="/todos" class="form-inline m-1">
+<input type="text" class="form-control w-75" name="text" placeholder="Insert new todo">
+<button class="" type="submit" value="done">Done</button></form>  
+
 </div>
 
 <div class="col-lg-6">
@@ -57,11 +54,4 @@ Delete All Items ?
 </li>
 {{/each}}
 </ul>
-</div>
-</div>    
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+{{>footer}}

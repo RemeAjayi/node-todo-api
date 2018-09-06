@@ -1,8 +1,28 @@
+.pattern-bg{
+  background-image: url('/img/background/lemon-pattern.png');
+
+}
 body{
-    background-color: #6e3667;
-    font-family: 'Cookie', cursive;
-    color: #1a0315;
+    background-color: #FCF8C9;
+    color: #004F9F;
     }
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Open Sans', sans-serif;
+}
+nav{
+  width:100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+p, a, span, form, i{
+  font-family: 'Open Sans', sans-serif;
+   
+}
+.form-white-bg
+{
+  background-color: #ffffff;
+  max-width: 500px;
+}
 
 a {
   text-decoration: none !important ;
