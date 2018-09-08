@@ -179,7 +179,7 @@ else{
 // POST /users
 
 app.post('/users', (req, res) => {
-  var body = _.pick(req.body, ['email', 'password']);
+  var body = _.pick(req.body, ['name', 'email', 'password']);
   var user = new User(body);
 
   user.save().then(() => {
@@ -188,7 +188,7 @@ app.post('/users', (req, res) => {
    // res.header('x-auth', token).send(user);
    req.session.accessToken = token;
    //console.log(req.session.accessToken);
-   res.redirect('/todos');
+   res.redirect('/todos');  
   }).catch((e) => {
     res.status(400).send(e);
   })
@@ -225,7 +225,7 @@ app.get('/users/me/token', authenticate, (req,res)=> {
   
 app.post('/users/me/token', authenticate, (req,res)=> {
 req.user.removeToken(req.token).then(()=> {
-res.status(200).send();
+res.status(200);
 req.session.destroy();
 res.redirect('/');
 }, ()=>{

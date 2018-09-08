@@ -18,50 +18,40 @@ p, a, span, form, i{
   font-family: 'Open Sans', sans-serif;
    
 }
+table tbody tr td a{
+  color: #007bff !important;
+}
 .form-white-bg
 {
   background-color: #ffffff;
   max-width: 500px;
 }
-
-a {
-  text-decoration: none !important ;
-  color: #88d317;
-}
-button 
+.ghost-btn
 {
-  background-color: #88d317 !important;
-  color: #1a0315 !important;
-  border: 1px solid #88d317 !important;
+  background-color: #FCF8C9 !important; 
+  color: #004F9F!important; 
+  border: 1px solid #004F9F!important; 
+  width: 20% !important; 
+  height: calc(2.25rem + 2px);
 }
+.logout
+{
+  text-align: center;
+}
+.item
+{
+  text-align: center;
+  min-width: 60%;
+}
+.form-check-input
+{
+  border: 1px solid #004F9F;
+}
+
 .main
 {
   max-width: 1000px;
 }
 
-
-    ul{
-      width: 100%;
-    }
-    li{
-      list-style-type: none;
-      min-height: 50px;
-      background-color: white;
-      text-align: center;
-      max-width: 500px;
-    }
-    li a, .single-todo a{
-      color: #1a0315;
-    }
- .single-todo{
-          width: 50%;
-        }
-  .item{
-          list-style-type: none;
-          min-height: 50px;
-          background-color: white;
-          text-align: center;
-          max-width: 500px;
-        }
 
         

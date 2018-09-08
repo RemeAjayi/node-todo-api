@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>All Todos</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<link href="/css/custom.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"> 
-</head>
-<body>
-<h2>Logout ?</h2>
+{{>header}}
+<div class="mx-auto logout">
+<h3>Logout ?</h3>
+<p>Are you sure you want to log out?</p>
 <form action="/users/me/token" method="post">
 {{!-- leave form empty make it use the post http method on the correct url for deletion --}}
 {{!-- <input type="hidden" name={{todo.id}} id={{todo.id}}>  --}}
-<button type="submit">Log out</button>
+<a href="/todos">No, I don't</a>
+<button type="submit" class="ghost-btn">Yes, I do</button>
 </form>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+</div>
+{{>footer}}
